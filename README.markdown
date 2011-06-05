@@ -1,6 +1,6 @@
 # tungsten
 
-tungsten is a lightweight stack slug parser written in PHP 5.3 OOP, making it safe (and easy) for users to just dump in text and have it "just work".
+tungsten is a lightweight stack slug text parser written in PHP 5.3 OOP, making it safe (and easy) for users to just dump in text and have it "just work".
 
 tungsten can take you from user input to storage (do remember to escape the data before insert though!), and then from storage to display (it'll handle html escaping on its own already), and all without missing a beat.
 
