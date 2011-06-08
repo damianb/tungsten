@@ -96,7 +96,7 @@ class Image implements \Codebite\Tungsten\Stack\StackInterface
 					continue;
 				}
 				$search[] = '#' . preg_quote($matches[0][$i], '#') . '#';
-				$format = '<img alt="user-supplied image" src="%s" />';
+				$format = '<img alt="user-supplied image" src="%s" class="tungsten_img" />';
 				$image = htmlspecialchars(base64_decode($matches[2][$i]), ENT_QUOTES, 'UTF-8');
 				$replace[] = sprintf($format, $image);
 			}
