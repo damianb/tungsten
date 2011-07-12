@@ -30,4 +30,4 @@ This library is licensed under the MIT license; you can find a full copy of the 
 
 ## usage
 
-this will come later because I'm still open sourcing my code and stripping out my proprietary stuff
+this will come later; haven't had the chance to write up docs yet
