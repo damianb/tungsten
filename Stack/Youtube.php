@@ -37,7 +37,7 @@ class Youtube implements \Codebite\Tungsten\Stack\StackInterface
 	 */
 	public static function newInstance()
 	{
-		return new static();
+		return new self();
 	}
 
 	/**
@@ -62,7 +62,7 @@ class Youtube implements \Codebite\Tungsten\Stack\StackInterface
 		// parse out youtube magic video URLs here
 		// (i love making sam's eyes bleed)
 		$regexp = '#(?:http://(?:www\.youtube\.com|youtu\.be)(?:/watch\?v=|/)([\w\-]+)(?:[\?\&](?:(?!hd)[\w\-]+)=[\w_\-]+)*(?:[\&\?](hd=1))?(?:[\?\&](?:(?!hd)[\w\-]+)=[\w\-]+)*)#';
-		$count = preg_match_all($regexp, $content, $matches);
+		$count = preg_match_all($regexp, $text, $matches);
 		if($count > 0)
 		{
 			for($i = 0, $size = sizeof($matches[0]); $i < $size; $i++)
@@ -114,6 +114,6 @@ class Youtube implements \Codebite\Tungsten\Stack\StackInterface
 			}
 		}
 
-		return $count;
+		return sizeof($search);
 	}
 }
