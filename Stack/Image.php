@@ -37,7 +37,7 @@ class Image implements \Codebite\Tungsten\Stack\StackInterface
 	 */
 	public static function newInstance()
 	{
-		return new static();
+		return new self();
 	}
 
 	/**
@@ -62,7 +62,7 @@ class Image implements \Codebite\Tungsten\Stack\StackInterface
 		// parse out magic image embed URLs here
 		// (i love making sam's eyes bleed)
 		$regexp = '#\!(((https?)://(?:(?:[a-zA-Z0-9]{2,}\.?){2,}))(((?:/?[\w\-\+ ]+)*)/(?:([\w\-\+ ]+\.[\w]{2,})(\?[\w\-\+\&\= ]+)?(\#[\w\-\=\+]+)?)))#';
-		$count = preg_match_all($regexp, $content, $matches);
+		$count = preg_match_all($regexp, $text, $matches);
 		if($count > 0)
 		{
 			for($i = 0, $size = sizeof($matches[0]); $i < $size; $i++)
@@ -96,12 +96,12 @@ class Image implements \Codebite\Tungsten\Stack\StackInterface
 					continue;
 				}
 				$search[] = '#' . preg_quote($matches[0][$i], '#') . '#';
-				$format = '<img alt="user-supplied image" src="%s" class="tungsten_img" />';
+				$format = '<img alt="user-supplied image" src="%1$s" class="tungsten_img" />';
 				$image = htmlspecialchars(base64_decode($matches[2][$i]), ENT_QUOTES, 'UTF-8');
 				$replace[] = sprintf($format, $image);
 			}
 		}
 
-		return $count;
+		return sizeof($search);
 	}
 }
