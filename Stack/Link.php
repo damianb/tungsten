@@ -61,7 +61,7 @@ class Link implements \Codebite\Tungsten\Stack\StackInterface
 	{
 		// parse out magic URLs here
 		// (i love making sam's eyes bleed)
-		$regexp = '#[^\!](((https?)://(?:(?:[a-zA-Z0-9]{2,}\.?){2,}))(((?:/?[\w\-\+ ]+)*)/(?:([\w\-\+ ]+\.[\w]{2,})(\?[\w\-\+\&\= ]+)?(\#[\w\-\=\+]+)?)))#';
+		$regexp = '#[^\!|](((https?)://(?:(?:[a-zA-Z0-9]{2,}\.?){2,}))(((?:/?[\w\-\+ ]+)*)/(?:([\w\-\+ ]+\.[\w]{2,})(\?[\w\-\+\&\= ]+)?(\#[\w\-\=\+]+)?)?))#';
 		$count = preg_match_all($regexp, $text, $matches);
 		if($count > 0)
 		{
