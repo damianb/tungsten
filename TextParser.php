@@ -16,7 +16,7 @@
  *
  */
 
-namespace Codebite\Tungsten\Stack;
+namespace Codebite\Tungsten;
 
 /**
  * Tungsten - Text parser object,
