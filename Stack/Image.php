@@ -68,7 +68,7 @@ class Image implements \Codebite\Tungsten\Stack\StackInterface
 			for($i = 0, $size = sizeof($matches[0]); $i < $size; $i++)
 			{
 				$search[] = '#' . preg_quote($matches[0][$i], '#') . '#';
-				$replace[] = sprintf('~{tungsten::%1$s::image::%2$s}~', $bitfield, base64_encode($matches[0][$i]));
+				$replace[] = sprintf('~{tungsten::%1$s::image::%2$s}~', $bitfield, base64_encode($matches[1][$i]));
 			}
 		}
 
@@ -91,7 +91,7 @@ class Image implements \Codebite\Tungsten\Stack\StackInterface
 		{
 			for($i = 0, $size = sizeof($matches[0]); $i < $size; $i++)
 			{
-				if($matches[1][$i] !== $bitfield)
+				if($matches[1][$i] != $bitfield)
 				{
 					continue;
 				}
