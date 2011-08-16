@@ -93,7 +93,7 @@ class UniqueSelector implements \Codebite\Tungsten\Stack\StackInterface
 			for($i = 0, $size = sizeof($matches[0]); $i < $size; $i++)
 			{
 				// ensure that BOTH bitfields are valid
-				if($matches[1][$i] !== $bitfield || $matches[4][$i] !== $bitfield)
+				if($matches[1][$i] != $bitfield || $matches[4][$i] != $bitfield)
 				{
 					continue;
 				}

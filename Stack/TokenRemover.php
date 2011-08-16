@@ -80,7 +80,7 @@ class TokenRemover implements \Codebite\Tungsten\Stack\StackInterface
 		{
 			for($i = 0, $size = sizeof($matches[0]); $i < $size; $i++)
 			{
-				if($matches[1][$i] !== $bitfield)
+				if($matches[0][$i] != $bitfield)
 				{
 					continue;
 				}
