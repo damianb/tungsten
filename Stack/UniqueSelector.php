@@ -104,7 +104,7 @@ class UniqueSelector implements \Codebite\Tungsten\Stack\StackInterface
 				}
 
 				$search[] = '#' . preg_quote($matches[0][$i], '#') . '#';
-				$format = '<div id="%1$s" class="tungsten-uniqueid">%2$s</div>';
+				$format = '<div id="%1$s" class="tungsten-uniqueid">%2$s</div><br />';
 				$id = 'tungsten-id_' . $matches[2][$i];
 				$replace[] = sprintf($format, $id, $matches[3][$i]);
 			}
