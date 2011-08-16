@@ -67,8 +67,8 @@ class Link implements \Codebite\Tungsten\Stack\StackInterface
 		{
 			for($i = 0, $size = sizeof($matches[0]); $i < $size; $i++)
 			{
-				$search[] = '#' . preg_quote($matches[0][$i], '#') . '#';
-				$replace[] = sprintf('~{tungsten::%1$s::link::%2$s}~', $bitfield, base64_encode($matches[0][$i]));
+				$search[] = '#' . preg_quote($matches[1][$i], '#') . '#';
+				$replace[] = sprintf('~{tungsten::%1$s::link::%2$s}~', $bitfield, base64_encode($matches[1][$i]));
 			}
 		}
 
