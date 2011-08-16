@@ -97,7 +97,7 @@ class Youtube implements \Codebite\Tungsten\Stack\StackInterface
 				}
 				$is_hd = ($matches[2][$i] === 'youtubehd') ? true : false;
 				$search[] = '#' . preg_quote($matches[0][$i], '#') . '#';
-				$format = '<object width="%2$s" height="%3$s"><param name="movie" value="http://www.youtube.com/v/%1$s?fs=1&amp;hl=en_US&amp;rel=0%4$s"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/%1$s?fs=1&amp;hl=en_US&amp;rel=0%4$s" type="application/x-shockwave-flash" width="%2$s" height="%3$s" allowscriptaccess="always" allowfullscreen="true" wmode="transparent"></embed></object>';
+				$format = '<object width="%2$s" height="%3$s"><param name="movie" value="http://www.youtube.com/v/%1$s?fs=1&amp;hl=en_US&amp;rel=0%4$s"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/%1$s?fs=1&amp;hl=en_US&amp;rel=0%4$s" type="application/x-shockwave-flash" width="%2$s" height="%3$s" allowscriptaccess="always" allowfullscreen="true" wmode="transparent"></embed></object><br />';
 				if($is_hd)
 				{
 					$width = 853;
