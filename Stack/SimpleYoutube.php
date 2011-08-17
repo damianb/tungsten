@@ -97,7 +97,7 @@ class SimpleYoutube implements \Codebite\Tungsten\Stack\StackInterface
 					continue;
 				}
 				$search[] = '#' . preg_quote($matches[0][$i], '#') . '#';
-				$format = '<object width="%2$s" height="%3$s" class="tungsten_youtube"><param name="movie" value="http://www.youtube.com/v/%1$s?fs=1&amp;hl=en_US&amp;rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/%1$s?fs=1&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" width="%2$s" height="%3$s" allowscriptaccess="always" allowfullscreen="true" wmode="transparent"></embed></object><br />';
+				$format = '<object width="%2$s" height="%3$s" class="tungsten_youtube" data="http://www.youtube.com/v/%1$s?fs=1&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash"><param name="movie" value="http://www.youtube.com/v/%1$s?fs=1&amp;hl=en_US&amp;rel=0" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="wmode" value="transparent" /><embed src="http://www.youtube.com/v/%1$s?fs=1&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" width="%2$s" height="%3$s" allowscriptaccess="always" allowfullscreen="true" wmode="transparent" /></object><br />';
 				$width = 480;
 				$height = 303;
 				$replace[] = sprintf($format, $matches[2][$i], $width, $height);
