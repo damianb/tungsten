@@ -96,7 +96,7 @@ class Link implements \Codebite\Tungsten\Stack\StackInterface
 					continue;
 				}
 				$search[] = '#' . preg_quote($matches[0][$i], '#') . '#';
-				$format = '<a href="%1$s" alt="user-supplied link" class="tungsten_link" src="%1$s">%1$s</a>';
+				$format = '<a href="%1$s" title="user-supplied link" class="tungsten_link">%1$s</a>';
 				$link = htmlspecialchars(base64_decode($matches[2][$i]), ENT_QUOTES, 'UTF-8');
 				$replace[] = sprintf($format, $link);
 			}
