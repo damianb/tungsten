@@ -29,24 +29,30 @@ namespace Codebite\Tungsten\Stack;
  * @license     http://opensource.org/licenses/mit-license.php The MIT License
  * @link        https://github.com/damianb/tungsten
  */
-class UniqueSelector implements \Codebite\Tungsten\Stack\StackInterface
+class UniqueSelector extends StackBase implements StackInterface
 {
-	/**
-	 * Get a new instance of this slug parser object.
-	 * @return \Codebite\Tungsten\Stack\Youtube - The newly created instance.
-	 */
-	public static function newInstance()
-	{
-		return new self();
-	}
+	const STACK_NAME = 'UniqueSelector';
 
 	/**
-	 * Get the name for this slug parser object.
-	 * @return string - The name of this slug parser object.
+	 * @var array - Array of options for this stack.
 	 */
-	public function getStackName()
+	protected $options = array(
+		'prefix'	=> '!',
+	);
+
+	/**
+	 * @var array - Array of HTML attributes to set on the elements.
+	 */
+	protected $attributes = array(
+		'div'		=> array(),
+	);
+
+	/**
+	 * Constructor
+	 */
+	public function __construct()
 	{
-		return 'UniqueSelector';
+		$this->setAttribute('div', 'class', 'tungsten-uniqueid');
 	}
 
 	/**
@@ -60,7 +66,9 @@ class UniqueSelector implements \Codebite\Tungsten\Stack\StackInterface
 	public function parseForStorage($text, &$bitfield, array &$search, array &$replace)
 	{
 		// spoiler parsing, woo!
-		$regexp = '#((?:~~\@)([^(\@~~)]+)(?:\@~~))#s';
+		$start = $this->getOption('prefix');
+		$end = strrev($start);
+		$regexp = '#((?:' . preg_quote($start, '#') . ')([^(' . preg_quote($end, '#') . ')]+)(?:' . preg_quote($end, '#') . '))#s';
 		$count = preg_match_all($regexp, $text, $matches);
 		if($count > 0)
 		{
@@ -74,6 +82,45 @@ class UniqueSelector implements \Codebite\Tungsten\Stack\StackInterface
 		}
 
 		return $count;
+	}
+
+	/**
+	 * Replace previously generated slugs with what was probably the plain text before parsing for editing by the end user.
+	 * @param string &$text - The text to prepare for display.
+	 * @param string &$bitfield - The random bitfield string to use for deslugification.
+	 * @param array &$search - The array of slugs to search for in the text (for deslugification)
+	 * @param array &$replace - The array of HTML chunks to replace the slugs (specified in &$search) with.
+	 * @return integer - The number of slugs found in the provided text.
+	 */
+	public function parseForEdit($text, &$bitfield, array &$search, array &$replace)
+	{
+		// spoiler parsing, woo!
+		$start = $this->getOption('prefix');
+		$end = strrev($start);
+		$regexp = '#~\{tungsten::([\w]+)::uniquestart::([a-f0-9]{5}\-[0-9]+)\}~(.*?)~\{tungsten::([\w]+)::uniqueend::([a-f0-9]{5}\-[0-9]+)\}~#Ss';
+		$count = preg_match_all($regexp, $text, $matches);
+		if($count > 0)
+		{
+			for($i = 0, $size = sizeof($matches[0]); $i < $size; $i++)
+			{
+				// ensure that BOTH bitfields are valid
+				if($matches[1][$i] != $bitfield || $matches[4][$i] != $bitfield)
+				{
+					continue;
+				}
+				// ensure that both unique id's match
+				if($matches[2][$i] != $matches[5][$i])
+				{
+					continue;
+				}
+
+				$search[] = '#' . preg_quote($matches[0][$i], '#') . '#';
+				$format = '%2$s%1$s%3$s';
+				$replace[] = sprintf($format, $start, $end);
+			}
+		}
+
+		return sizeof($search);
 	}
 
 	/**
@@ -104,9 +151,9 @@ class UniqueSelector implements \Codebite\Tungsten\Stack\StackInterface
 				}
 
 				$search[] = '#' . preg_quote($matches[0][$i], '#') . '#';
-				$format = '<div id="%1$s" class="tungsten-uniqueid">%2$s</div><br />';
+				$format = '<div id="%1$s" %3$s>%2$s</div><br />';
 				$id = 'tungsten-id_' . $matches[2][$i];
-				$replace[] = sprintf($format, $id, $matches[3][$i]);
+				$replace[] = sprintf($format, $id, $matches[3][$i], $this->dumpAttributes('div'));
 			}
 		}
 
