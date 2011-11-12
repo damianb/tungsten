@@ -32,6 +32,6 @@ namespace Codebite\Tungsten\Stack;
 interface StackInterface
 {
 	public function parseForStorage($text, &$bitfield, array &$search, array &$replace);
-	public function parseForPlaintext($text, &$bitfield, array &$search, array &$replace);
+	public function parseForEdit($text, &$bitfield, array &$search, array &$replace);
 	public function parseForDisplay($text, &$bitfield, array &$search, array &$replace);
 }
