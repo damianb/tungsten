@@ -42,6 +42,8 @@ class Youtube extends StackBase implements StackInterface
 
 		'hd_width'	=> 853,
 		'hd_height'	=> 510,
+
+		'use_hd'	=> true,
 	);
 
 	/**
@@ -93,7 +95,7 @@ class Youtube extends StackBase implements StackInterface
 				$is_hd = ($matches[2][$i] === 'youtubehd') ? true : false;
 				$search[] = '#' . preg_quote($matches[0][$i], '#') . '#';
 				$format = 'http://www.youtube.com/watch?v=%1$s%2$s';
-				if($is_hd)
+				if($is_hd && $this->getOption('use_hd'))
 				{
 					$hd = '&amp;hd=1';
 				}
@@ -131,7 +133,7 @@ class Youtube extends StackBase implements StackInterface
 				$is_hd = ($matches[2][$i] === 'youtubehd') ? true : false;
 				$search[] = '#' . preg_quote($matches[0][$i], '#') . '#';
 				$format = '<object width="%2$s" height="%3$s" class="tungsten_youtube" data="http://www.youtube.com/v/%1$s?fs=1&amp;hl=en_US&amp;rel=0%4$s" type="application/x-shockwave-flash"><param name="movie" value="http://www.youtube.com/v/%1$s?fs=1&amp;hl=en_US&amp;rel=0%4$s" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="wmode" value="transparent" /><embed src="http://www.youtube.com/v/%1$s?fs=1&amp;hl=en_US&amp;rel=0%4$s" type="application/x-shockwave-flash" width="%2$s" height="%3$s" allowscriptaccess="always" allowfullscreen="true" wmode="transparent" /></object><br />';
-				if($is_hd)
+				if($is_hd && $this->getOption('use_hd'))
 				{
 					$width = $this->getOption('hd_width');
 					$height = $this->getOption('hd_height');
