@@ -32,6 +32,11 @@ namespace Codebite\Tungsten\Stack;
 abstract class StackBase
 {
 	/**
+	 * @var boolean - Is this parser enabled?
+	 */
+	protected $enabled = true;
+
+	/**
 	 * @var array - Array of options for this stack.
 	 */
 	protected $options = array();
@@ -116,5 +121,36 @@ abstract class StackBase
 			$html[] = $attribute . '="' . $value . '"';
 		}
 		return join(' ', $html);
+	}
+
+	/**
+	 * Check if this parser is enabled.
+	 * @return boolean - Is this parser enabled?
+	 */
+	public function getEnabled()
+	{
+		return $this->enabled ? true : false;
+	}
+
+	/**
+	 * Enable this parser.
+	 * @return self - Provides a fluent interface.
+	 */
+	public function enable()
+	{
+		$this->enabled = true;
+
+		return $this;
+	}
+
+	/**
+	 * Disable this parser.
+	 * @return self - Provides a fluent interface.
+	 */
+	public function disable()
+	{
+		$this->enabled = false;
+
+		return $this;
 	}
 }
