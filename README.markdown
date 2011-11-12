@@ -6,7 +6,13 @@ tungsten can take you from user input to storage (do remember to escape the data
 
 ## how it works
 
-provided with it are three stacks for the parser: Youtube, Image, and Link.
+provided with it are several stacks for the parser:
+
+* Image
+* Link
+* LinkedImage (for use with javascript thumbnail stuff)
+* UniqueSelector (great for "spoiler" content)
+* TokenRemover (hides erroneous slug data).
 
 the parser is intended to be run on pure plain text with extremely minimal formatting.
 
@@ -27,6 +33,7 @@ This library is licensed under the MIT license; you can find a full copy of the 
 ## requirements
 
 * PHP 5.3.0 or newer
+* OpenFlame Framework 1.2.1 or newer
 
 ## usage
 
