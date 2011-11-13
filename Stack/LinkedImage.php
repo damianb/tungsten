@@ -70,7 +70,7 @@ class LinkedImage extends StackBase implements StackInterface
 	{
 		// parse out magic image embed URLs here
 		// (i love making sam's eyes bleed)
-		$regexp = '#' . preg_quote($this->getOption('prefix'), '#') . '(((https?)://(?:(?:[a-zA-Z0-9]{2,}\.?){2,}))(((?:/?[\w\-\+ ]+)*)/(?:([\w\-\+ ]+\.[\w]{2,})(\?[\w\-\+\&\= ]+)?(\#[\w\-\=\+]+)?)))#';
+		$regexp = '#' . preg_quote($this->getOption('prefix'), '#') . '(((https?)://(?:(?:[a-zA-Z0-9]{2,}\.?){2,}))(((?:/?[\w\-\+\~ ]+)*)/(?:([\w\-\+\~ ]+\.[\w]{2,})(\?[\w\-\+\~\&\= ]+)?(\#[\w\-\=\+]+)?)))#';
 		$count = preg_match_all($regexp, $text, $matches);
 		if($count > 0)
 		{
