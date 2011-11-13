@@ -69,7 +69,7 @@ class Link extends StackBase implements StackInterface
 	{
 		// parse out magic URLs here
 		// (i love making sam's eyes bleed)
-		$regexp = '#[^\\' . $this->getOption('prefix') . '|](((https?)://(?:(?:[a-zA-Z0-9]{2,}\.?){2,}))(((?:/?[\w\-\+ ]+)*)/(?:([\w\-\+ ]+\.[\w]{2,})(\?[\w\-\+\&\= ]+)?(\#[\w\-\=\+]+)?)?))#';
+		$regexp = '#[^\\' . $this->getOption('prefix') . '|](((https?)://(?:(?:[a-zA-Z0-9]{2,}\.?){2,}))(((?:/?[\w\-\+\~ ]+)*)/(?:([\w\-\+\~ ]+\.[\w]{2,})(\?[\w\-\+\~\&\= ]+)?(\#[\w\-\=\+]+)?)))#';
 		$count = preg_match_all($regexp, $text, $matches);
 		if($count > 0)
 		{
