@@ -37,7 +37,7 @@ class UniqueSelector extends StackBase implements StackInterface
 	 * @var array - Array of options for this stack.
 	 */
 	protected $options = array(
-		'prefix'	=> '!',
+		'prefix'	=> '~~@',
 	);
 
 	/**
