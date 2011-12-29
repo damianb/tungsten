@@ -68,7 +68,7 @@ class Image implements \Codebite\Tungsten\Stack\StackInterface
 	{
 		// parse out magic image embed URLs here
 		// (i love making sam's eyes bleed)
-		$regexp = '#' . preg_quote($this->getOption('prefix'), '#') . '(((https?)://(?:(?:[a-zA-Z0-9]{2,}\.?){2,}))(((?:/?[\w\-\+\~ ]+)*)/(?:([\w\-\+\~ ]+\.[\w]{2,})(\?[\w\-\+\~\&\= ]+)?(\#[\w\-\=\+]+)?)))#';
+		$regexp = '#' . preg_quote($this->getOption('prefix'), '#') . '(((https?)://(?:(?:[a-zA-Z0-9]+\.?){2,}))(((?:/?[\w\-\+\~_ ]+)*)/(?:([\w\-\+\~_ ]+\.[\w]{2,})(\?[\w\-\+\~\&\=_ ]+)?(\#[\w\-\=\+_]+)?)))#';
 		$count = preg_match_all($regexp, $text, $matches);
 		if($count > 0)
 		{
